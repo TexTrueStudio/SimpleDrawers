@@ -5,7 +5,7 @@
   "name": "Simple Drawers",
   "description": "",
   "authors": [
-    "benfah"
+    "benfah","TexTrue"
   ],
   "license": "MIT",
   "icon": "assets/simpledrawers/icon.png",
@@ -28,8 +28,8 @@
   },
   "custom": {
     "waila:plugins": {
-      "id": "simpledrawers:hwyla_plugin",
-      "initializer": "me.benfah.simpledrawers.plugin.hwyla.HwylaPlugin"
+      "id": "simpledrawers:wthit_plugin",
+      "initializer": "me.benfah.simpledrawers.plugin.wthit.WTHITPlugin"
     }
   },
   "suggests": {
