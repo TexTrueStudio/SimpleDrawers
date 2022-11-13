@@ -1,20 +1,17 @@
-package me.benfah.simpledrawers.plugin.hwyla;
+package me.benfah.simpledrawers.plugin.wthit;
 
-import mcp.mobius.waila.api.IComponentProvider;
-import mcp.mobius.waila.api.IDataAccessor;
-import mcp.mobius.waila.api.IPluginConfig;
-import mcp.mobius.waila.api.RenderableTextComponent;
+import mcp.mobius.waila.api.*;
 import me.benfah.simpledrawers.api.drawer.BlockAbstractDrawer;
 import me.benfah.simpledrawers.api.drawer.blockentity.BlockEntityAbstractDrawer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
-public class DrawerComponentProvider implements IComponentProvider
+public class DrawerComponentProvider implements IBlockComponentProvider
 {
 
     public static DrawerComponentProvider INSTANCE = new DrawerComponentProvider();
@@ -24,18 +21,19 @@ public class DrawerComponentProvider implements IComponentProvider
     }
 
     @Override
-    public ItemStack getStack(IDataAccessor accessor, IPluginConfig config)
+    public ItemStack getDisplayItem(IBlockAccessor accessor, IPluginConfig config)
     {
         if(accessor.getBlock() instanceof BlockAbstractDrawer)
         {
             return BlockAbstractDrawer.getStack((BlockAbstractDrawer) accessor.getBlock(),
                     accessor.getBlockState().get(BlockAbstractDrawer.BORDER_TYPE));
         }
-        return IComponentProvider.super.getStack(accessor, config);
+        return ItemStack.EMPTY;
     }
 
+
     @Override
-    public void appendBody(List<Text> tooltip, IDataAccessor accessor, IPluginConfig config)
+    public void appendBody(List<Text> tooltip, IBlockAccessor accessor, IPluginConfig config)
     {
         BlockEntityAbstractDrawer drawer = (BlockEntityAbstractDrawer) accessor.getBlockEntity();
 
@@ -49,7 +47,7 @@ public class DrawerComponentProvider implements IComponentProvider
     {
         if(!stack.isEmpty())
         {
-            CompoundTag tag = new CompoundTag();
+            NbtCompound tag = new NbtCompound();
             tag.putString("id", Registry.ITEM.getId(stack.getItem()).toString());
             tag.putInt("count", stack.getCount());
             if(stack.hasTag())
@@ -57,7 +55,7 @@ public class DrawerComponentProvider implements IComponentProvider
             return new RenderableTextComponent(new Identifier("item"), tag);
         } else
         {
-            CompoundTag spacerTag = new CompoundTag();
+            NbtCompound spacerTag = new NbtCompound();
             spacerTag.putInt("width", 18);
             return new RenderableTextComponent(new Identifier("spacer"), spacerTag);
         }

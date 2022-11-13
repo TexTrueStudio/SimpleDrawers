@@ -1,7 +1,7 @@
 package me.benfah.simpledrawers.utils;
 
-import me.benfah.simpledrawers.api.border.BorderRegistry;
-import me.benfah.simpledrawers.api.drawer.BlockAbstractDrawer;
+//import me.benfah.simpledrawers.api.border.BorderRegistry;
+//import me.benfah.simpledrawers.api.drawer.BlockAbstractDrawer;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;

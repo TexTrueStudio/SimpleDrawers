@@ -10,17 +10,18 @@ import me.benfah.simpledrawers.utils.ModelUtils;
 import me.benfah.simpledrawers.utils.PropertyStateConverter;
 import me.benfah.simpledrawers.utils.WrappedBakedModel;
 import net.minecraft.block.Block;
-import net.minecraft.client.MinecraftClient;
+//import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.BakedModel;
 import net.minecraft.client.render.model.json.ModelTransformation.Mode;
-import net.minecraft.client.util.ModelIdentifier;
+//import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+//import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.Optional;
+//import java.util.Optional;
 
 public class ItemModelRedirector implements RedirectModelCallback
 {
@@ -43,7 +44,7 @@ public class ItemModelRedirector implements RedirectModelCallback
         }
         if(stack.getItem() instanceof ItemPackagedDrawer)
         {
-            CompoundTag tag = stack.getSubTag("DrawerInfo");
+            NbtCompound tag = stack.getSubTag("DrawerInfo");
             if(tag != null)
             {
                 BlockAbstractDrawer drawer = (BlockAbstractDrawer) Registry.BLOCK.get(new Identifier(tag.getString("Id")));
